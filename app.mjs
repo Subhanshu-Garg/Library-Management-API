@@ -13,6 +13,10 @@ import startServer from './startServer.mjs'
 import Routes from './api/routes/index.mjs'
 import SERVER_CONFIG from './config/SERVER_CONFIG.mjs'
 
+//Importing By Subhanshu
+import "./api/helpers/passport.mjs"
+import passport from 'passport'
+
 const { BODY_LIMIT, CORS_OPTIONS } = SERVER_CONFIG
 const app = express()
 
@@ -20,6 +24,9 @@ app.use(cors(CORS_OPTIONS))
 app.use(express.json({ limit: BODY_LIMIT }))
 app.use(express.urlencoded({ limit: BODY_LIMIT, extended: true }))
 app.use(helmet())
+
+//passport is initialized
+app.use(passport.initialize())
 
 // Initialize Routes
 configureApp(app, Routes)
